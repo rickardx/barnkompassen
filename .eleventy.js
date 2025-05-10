@@ -5,28 +5,42 @@ const htmlmin = require("html-minifier");
 const yaml = require("js-yaml");
 const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
 const Image = require("@11ty/eleventy-img");
+const path = require("path");
 
 module.exports = function(eleventyConfig) {
 
   // https://www.11ty.dev/docs/plugins/image/
   eleventyConfig.addShortcode("generateImage", async function(src, alt, sizes) {
+    // Handle relative paths
+    if (src.startsWith('./')) {
+      src = src.substring(2);
+    }
+    if (src.startsWith('/')) {
+      src = src.substring(1);
+    }
     
-    let metadata = await Image(src, {
-      widths: [500, 1000, "auto"],
-      formats: ["avif", "jpeg"],
-      urlPath: "/assets/img/",
-      outputDir: "./_site/assets/img/"
-    });
+    let imagePath = path.join(process.cwd(), src);
+    
+    try {
+      let metadata = await Image(imagePath, {
+        widths: [500, 1000, "auto"],
+        formats: ["avif", "jpeg"],
+        urlPath: "/assets/img/",
+        outputDir: "./_site/assets/img/"
+      });
 
-    let imageAttributes = {
-      alt,
-      sizes,
-      loading: "lazy",
-      decoding: "async",
-    };
-    
-    return Image.generateHTML(metadata, imageAttributes);
-  
+      let imageAttributes = {
+        alt,
+        sizes,
+        loading: "lazy",
+        decoding: "async",
+      };
+      
+      return Image.generateHTML(metadata, imageAttributes);
+    } catch (e) {
+      console.log(`Image processing error for ${src}: ${e.message}`);
+      return `<img src="${src}" alt="${alt}" loading="lazy">`;
+    }
   });
 
   // Eleventy Navigation https://www.11ty.dev/docs/plugins/navigation/
@@ -53,6 +67,11 @@ module.exports = function(eleventyConfig) {
       coll[author].push(post);
       return coll;
     }, {});
+  });
+
+  // Add locations collection
+  eleventyConfig.addCollection("locations", collection => {
+    return collection.getFilteredByGlob("locations/*.md");
   });
 
   // Date formatting (human readable)
@@ -111,8 +130,8 @@ module.exports = function(eleventyConfig) {
     templateFormats: ["md", "njk", "liquid"],
 
     // If your site lives in a different subdirectory, change this.
-    // Leading or trailing slashes are all normalized away, so don’t worry about it.
-    // If you don’t have a subdirectory, use "" or "/" (they do the same thing)
+    // Leading or trailing slashes are all normalized away, so don't worry about it.
+    // If you don't have a subdirectory, use "" or "/" (they do the same thing)
     // This is only used for URLs (it does not affect your file structure)
     pathPrefix: "/",
 

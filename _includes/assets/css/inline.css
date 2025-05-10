@@ -100,6 +100,44 @@ main > section {
 	padding: 2rem 0;
 }
 
+/* Locations */
+.locations-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+	gap: 1.5rem;
+	padding: 2rem 0;
+}
+
+.location-card {
+	display: grid;
+	grid-template-rows: 1fr auto;
+	background-color: var(--secondary);
+	padding: 1rem;
+	border-radius: 0.25em;
+	transition: transform 0.2s ease-in-out;
+}
+
+.location-card:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.location-card img {
+	object-fit: cover;
+	aspect-ratio: 16/9;
+	border-radius: 0.25em;
+}
+
+.location-meta {
+	margin-top: 1rem;
+}
+
+.location-summary {
+	margin-top: 0.5rem;
+	font-size: 0.9rem;
+	color: #666;
+}
+
 main > article {
 	max-width: 40rem;
 	margin-bottom: 2rem;

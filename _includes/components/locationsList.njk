@@ -1,0 +1,27 @@
+{% if locationsList.length >= 1 %}
+	<p>{{ locationsList.length }} {{ "location" | pluralize(locationsList.length) }}</p>
+{% endif %}
+
+<section class="locations-grid">
+	{% for location in locationsList | reverse %}
+		<article class="location-card">
+			<a href="{{ location.url | url }}">
+				{% if location.data.image %}
+					{% generateImage location.data.image, location.data.title, "90vw" %}
+				{% endif %}
+
+				<h3>{{ location.data.title }}</h3>
+			</a>
+			
+			<div class="location-meta">
+				<time datetime="{{ location.date | machineDate }}">
+					<small>{{ location.date | readableDate }} by <a href="/authors/{{ location.data.author | slug }}/">{{ location.data.author }}</a></small>
+				</time>
+				
+				{% if location.data.summary %}
+					<p class="location-summary">{{ location.data.summary }}</p>
+				{% endif %}
+			</div>
+		</article>
+	{% endfor %}
+</section> 

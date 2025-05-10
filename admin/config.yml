@@ -9,7 +9,7 @@
 backend:
   name: github
   repo: danurbanowicz/eleventy-sveltia-cms-starter
-  branch: master
+  branch: main
 
 # The folder used to store uploaded images
 media_folder: "assets/img"
@@ -37,6 +37,22 @@ collections:
           #config:
             #max_file_size: 2048000 # maximum image file size in bytes
       - { label: "Image Alt Text", name: "imageAltText", widget: "string" }
+      - { label: "Body", name: "body", widget: "markdown" }
+  - name: "locations"
+    label: "Locations"
+    label_singular: "Location"
+    folder: "locations"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Author", name: "author", widget: "relation", collection: "authors", value_field: "name" }
+      - { label: "Summary", name: "summary", widget: "text" }
+      - label: "Image"
+        name: "image"
+        widget: "image"
+        hint: "Upload an image for this location. You can also use an image URL."
       - { label: "Body", name: "body", widget: "markdown" }
   - name: "pages"
     label: "Pages"

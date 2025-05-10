@@ -1,0 +1,15 @@
+---
+layout: layouts/base.njk
+title: Locations
+date: 2023-01-01
+permalink: /locations/
+eleventyNavigation:
+  key: Locations
+  title: Locations
+  order: 2
+---
+
+<h1>{{ title }}</h1>
+
+{% set locationsList = collections.locations %}
+{% include "components/locationsList.njk" %} 

@@ -1,0 +1,32 @@
+---
+layout: layouts/base.njk
+section: location
+---
+<article>
+
+  <h1>{{ title }}</h1>
+
+  {% if summary %}
+    <p class="location-summary">{{ summary }}</p>
+  {% endif %}
+
+  <p>
+    <small>
+      Posted on
+      <time datetime="{{ page.date | machineDate }}">
+        {{ page.date | readableDate }}
+      </time>
+      by
+      <a href="/authors/{{ author | slug}}">{{ author }}</a>
+    </small>
+  </p>
+
+  {% if image %}
+    {% generateImage image, title, "90vw" %}
+  {% endif %}
+
+  {{ layoutContent | safe }}
+
+</article>
+
+{% include "components/nav-back.njk" %} 
