@@ -1,0 +1,28 @@
+---
+layout: layouts/base.njk
+section: locations
+permalink: /platser/index.html
+---
+<h1>{{ title }}</h1>
+
+{{ content | safe }}
+
+{% set locationsList = collections.platser %}
+<div class="locations-grid">
+  {%- for location in locationsList %}
+  <article class="location-card">
+    {% if location.data.image %}
+      <img src="{{ location.data.image }}" alt="{{ location.data.imageAltText or location.data.title }}" loading="lazy">
+    {% endif %}
+    <div class="location-content">
+      <h2><a href="{{ location.url | url }}">{{ location.data.title }}</a></h2>
+      {% if location.data.summary %}
+        <p>{{ location.data.summary }}</p>
+      {% endif %}
+      {% if location.data.author %}
+        <p class="author">Av: <a href="/forfattare/{{ location.data.author | slug }}">{{ location.data.author }}</a></p>
+      {% endif %}
+    </div>
+  </article>
+  {%- endfor %}
+</div> 

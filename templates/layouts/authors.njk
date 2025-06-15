@@ -1,0 +1,25 @@
+---
+layout: layouts/base.njk
+section: authors
+permalink: /forfattare/index.html
+---
+<h1>{{ title }}</h1>
+
+{{ content | safe }}
+
+{% set authorsList = collections.forfattare %}
+<div class="authors-grid">
+  {%- for author in authorsList %}
+  <article class="author-card">
+    {% if author.data.image %}
+      <img src="{{ author.data.image }}" alt="{{ author.data.name }}" loading="lazy" class="author-avatar">
+    {% endif %}
+    <div class="author-content">
+      <h2><a href="{{ author.url | url }}">{{ author.data.name }}</a></h2>
+      {% if author.data.body %}
+        <div class="author-bio">{{ author.data.body | markdown | safe }}</div>
+      {% endif %}
+    </div>
+  </article>
+  {%- endfor %}
+</div> 
