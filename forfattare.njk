@@ -1,0 +1,18 @@
+---
+layout: layouts/base.njk
+title: Författare
+date: 2023-01-01
+permalink: /forfattare/
+eleventyNavigation:
+  key: Författare
+  title: Författare
+  order: 4
+---
+
+<h1>{{ title }}</h1>
+
+<ul>
+{% for author in collections.forfattare %}
+  <li><a href="{{ author.url | url }}">{{ author.data.name }}</a></li>
+{% endfor %}
+</ul> 

@@ -1,9 +1,9 @@
-{% if locationsList.length >= 1 %}
-	<p>{{ locationsList.length }} {{ "location" | pluralize(locationsList.length) }}</p>
+{% if platserlista.length >= 1 %}
+	<p>{{ platserlista.length }} {{ "plats" | swedishPluralize(platserlista.length) }}</p>
 {% endif %}
 
 <section class="locations-grid">
-	{% for location in locationsList | reverse %}
+	{% for location in platserlista | reverse %}
 		<article class="location-card">
 			<a href="{{ location.url | url }}">
 				{% if location.data.image %}
@@ -15,11 +15,15 @@
 			
 			<div class="location-meta">
 				<time datetime="{{ location.date | machineDate }}">
-					<small>{{ location.date | readableDate }} by <a href="/authors/{{ location.data.author | slug }}/">{{ location.data.author }}</a></small>
+					<small>{{ location.date | readableDate }} av <a href="/forfattare/{{ location.data.author | slug }}/">{{ location.data.author }}</a></small>
 				</time>
 				
 				{% if location.data.summary %}
 					<p class="location-summary">{{ location.data.summary }}</p>
+				{% endif %}
+				
+				{% if location.data.geolocation %}
+					<p class="location-has-map"><small>📍 Kartkordinater tillgängliga</small></p>
 				{% endif %}
 			</div>
 		</article>

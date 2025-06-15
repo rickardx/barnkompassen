@@ -1,0 +1,125 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Cursor Rules for Barnkompassen - Eleventy + Sveltia CMS Project
+
+## Project Overview
+This project uses:
+- **Eleventy (11ty)** as the static site generator
+- **Sveltia CMS** for content management
+- **Netlify** for deployment and hosting
+- **Vanilla CSS** without build processes
+- **Semantic HTML** with full accessibility compliance
+
+## Core Principles
+
+### 1. Accessibility First
+- All HTML must be semantic and accessible
+- Use proper heading hierarchy (h1 → h2 → h3, etc.)
+- Include ARIA labels, roles, and descriptions where needed
+- Ensure keyboard navigation works for all interactive elements
+- Maintain color contrast ratios of at least 4.5:1 for normal text and 3:1 for large text
+- Include alt text for all images
+- Use `<main>`, `<nav>`, `<article>`, `<section>`, `<aside>`, `<header>`, `<footer>` elements appropriately
+- Ensure form labels are properly associated with inputs
+- Use `<button>` for actions and `<a>` for navigation
+- Test with screen readers in mind
+
+### 2. CSS Guidelines
+- **NO build process required** - use vanilla CSS only
+- CSS files should be served directly without compilation
+- Use CSS custom properties (variables) for consistency
+- Follow mobile-first responsive design
+- Use logical CSS properties when possible (`inline-start` instead of `left`)
+- Avoid `!important` declarations
+- Use CSS Grid and Flexbox for layouts
+- Keep specificity low and use meaningful class names
+- Include focus styles for all interactive elements
+- Use `rem` and `em` units for scalability
+
+### 3. HTML Structure
+- Always use semantic HTML5 elements
+- Include proper `<meta>` tags for SEO and accessibility
+- Use descriptive `id` and `class` names
+- Ensure proper document outline with headings
+- Use lists (`<ul>`, `<ol>`) for grouped content
+- Include `lang` attribute on `<html>` element
+- Use `<time>` elements for dates with proper `datetime` attributes
+
+### 4. Eleventy Specific
+- Follow Eleventy's templating conventions using Nunjucks
+- Use data files in `_data/` for site configuration
+- Leverage Eleventy's image optimization plugin for performance
+- Use shortcodes for reusable components
+- Organize templates in `_includes/` directory
+- Use proper front matter for page metadata
+
+### 5. Sveltia CMS Integration
+- Maintain the `admin/config.yml` file for CMS configuration
+- Ensure all content fields in CMS match template expectations
+- Use markdown files for content where appropriate
+- Follow the established content structure and naming conventions
+- Test CMS preview functionality when making template changes
+
+### 6. Netlify Deployment
+- Follow the build configuration in `netlify.toml`
+- Use Netlify Forms for contact forms (with proper accessibility)
+- Leverage Netlify's edge functions when needed
+- Ensure all redirects are properly configured
+- Use environment variables for sensitive data
+- Test build process locally before deployment
+
+### 7. Performance
+- Optimize images using Eleventy's image plugin
+- Minimize HTTP requests
+- Use semantic HTML to reduce markup bloat
+- Implement proper caching strategies
+- Ensure fast loading times on mobile devices
+- Use `loading="lazy"` for below-the-fold images
+
+### 8. Code Quality
+- Use consistent indentation (2 spaces)
+- Follow BEM methodology for CSS class naming when appropriate
+- Keep file organization clean and logical
+- Comment complex CSS and template logic
+- Use meaningful variable names in templates
+- Validate HTML and CSS regularly
+
+### 9. Content Strategy
+- Write content in clear, simple language
+- Use proper heading structure for content hierarchy
+- Include meaningful meta descriptions
+- Use structured data when relevant
+- Ensure content is keyboard navigable
+- Test content with assistive technologies
+
+### 10. Testing Requirements
+- Test with multiple screen readers (NVDA, JAWS, VoiceOver)
+- Validate HTML using W3C validator
+- Check CSS with W3C CSS validator
+- Test keyboard navigation thoroughly
+- Verify color contrast compliance
+- Test on multiple devices and browsers
+- Ensure CMS preview matches live site
+
+## File Structure Guidelines
+```
+/
+├── _includes/           # Eleventy templates and components
+├── _data/              # Site data and configuration
+├── admin/              # Sveltia CMS configuration
+├── assets/             # Static assets (images, CSS, JS)
+├── posts/              # Blog posts and content
+├── pages/              # Static pages
+└── _site/              # Generated site (ignored in git)
+```
+
+## Remember
+- Accessibility is not optional - it's a requirement
+- CSS should work without any build step
+- Every change should be tested for accessibility compliance
+- Sveltia CMS configuration should remain functional
+- Netlify deployment should be smooth and automatic
+- Performance and user experience are priorities

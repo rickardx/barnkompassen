@@ -1,5 +1,5 @@
 <!doctype html>
-<html {% if section %} data-current="{{ section }}"{% endif %} lang="en">
+<html {% if section %} data-current="{{ section }}"{% endif %} lang="sv">
 
 	{% include "components/head.njk" %}
 
@@ -13,7 +13,7 @@
 		</header>
 
 		<main>
-			{{ layoutContent | safe }}
+			{{ content | safe }}
 		</main>
 
 		{% include "components/footer.njk" %}

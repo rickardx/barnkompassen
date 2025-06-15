@@ -12,14 +12,15 @@ section: location
 
   <p>
     <small>
-      Posted on
+      Publicerad 
       <time datetime="{{ page.date | machineDate }}">
         {{ page.date | readableDate }}
       </time>
-      by
-      <a href="/authors/{{ author | slug}}">{{ author }}</a>
+      av
+      <a href="/forfattare/{{ author | slug}}">{{ author }}</a>
     </small>
   </p>
+
 
   {% if image %}
     {% generateImage image, title, "90vw" %}
@@ -27,7 +28,7 @@ section: location
 
   {% if geolocation %}
     <div class="location-coordinates">
-      <p><strong>Coordinates:</strong> {{ geolocation.latitude }}, {{ geolocation.longitude }}</p>
+      <p><strong>Koordinater:</strong> {{ geolocation.latitude }}, {{ geolocation.longitude }}</p>
       
       <div id="map" style="height: 400px; width: 100%; margin-top: 1rem;"></div>
       
@@ -64,7 +65,10 @@ section: location
           map.addControl(new mapboxgl.NavigationControl(), 'top-right');
           
           // Create a direct link to Google Maps as a fallback/alternative
-        
+          const mapLink = document.createElement('p');
+          mapLink.style.marginTop = '0.5rem';
+          mapLink.style.fontSize = '0.9rem';
+          mapLink.innerHTML = `<a href="https://www.google.com/maps/search/?api=1&query=${lat},${lng}" target="_blank" rel="noopener noreferrer">Visa på Google Maps</a>`;
           document.getElementById('map').parentNode.appendChild(mapLink);
         });
       </script>
@@ -75,4 +79,6 @@ section: location
 
 </article>
 
+{% set backUrl = "/platser/" %}
+{% set backTitle = "Platser" %}
 {% include "components/nav-back.njk" %}

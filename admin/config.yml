@@ -8,8 +8,11 @@
 # Enter your GitHub repo path and branch (defaults to master)
 backend:
   name: github
-  repo: danurbanowicz/eleventy-sveltia-cms-starter
+  repo: rickardx/barnkompassen
   branch: main
+
+# Local development configuration - allows working without GitHub authentication
+local_backend: true
 
 # The folder used to store uploaded images
 media_folder: "assets/img"
@@ -19,7 +22,7 @@ collections:
   - name: "blog"
     label: "Posts"
     label_singular: "Post"
-    folder: "posts"
+    folder: "blogg"
     create: true
     slug: "{{slug}}"
     fields:
@@ -27,7 +30,7 @@ collections:
       - { label: "Publish Date", name: "date", widget: "datetime" }
       - { label: "Author", name: "author", widget: "relation", collection: "authors", value_field: "name" }
       - { label: "Summary", name: "summary", widget: "text" }
-      - { label: "Tags", name: "tags", widget: "list", default: ["post"], hint: "Enter tags separated by a comma" }
+      - { label: "Tags", name: "tags", widget: "list", default: ["inlagg"], hint: "Enter tags separated by a comma" }
       - label: "Image"
         name: "image"
         widget: "image"
@@ -41,7 +44,7 @@ collections:
   - name: "locations"
     label: "Locations"
     label_singular: "Location"
-    folder: "locations"
+    folder: "platser"
     create: true
     slug: "{{slug}}"
     fields:
@@ -64,13 +67,13 @@ collections:
   - name: "pages"
     label: "Pages"
     label_singular: "Page"
-    folder: "pages"
+    folder: "sidor"
     create: true
     slug: "{{slug}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Publish Date", name: "date", widget: "datetime" }
-      - { label: "Permalink", name: "permalink", widget: "hidden" }
+      - { label: "Permalink", name: "permalink", widget: "string", hint: "URL path, start with /sidor/ for Swedish pages and end with / (e.g., /sidor/my-page/)" }
       - label: "Navigation"
         name: "eleventyNavigation"
         widget: "object"
@@ -83,7 +86,7 @@ collections:
     label: "Authors"
     label_singular: "Author"
     icon: "person"
-    folder: "authors"
+    folder: "forfattare"
     create: true
     slug: "{{slug}}"
     fields:
