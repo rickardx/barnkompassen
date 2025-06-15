@@ -5,10 +5,7 @@ description: This is a sample meta description. If one is not present in your pa
 section: contact
 date: 2018-01-01
 permalink: /contact/index.html
-eleventyNavigation:
-  key: contact
-  title: Contact
-  order: 3
+# eleventyNavigation removed - using Swedish navigation only
 ---
 This is an example of a contact page.
 
