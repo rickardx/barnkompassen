@@ -9,7 +9,7 @@ permalink: "forfattare/{{ name | slug }}/"
   {% generateImage image, name, "90vw" %}
 {% endif %}
 
-{{ layoutContent | safe }}
+{{ content | safe }}
 
 <p>All posts by {{ name }}</p>
 
