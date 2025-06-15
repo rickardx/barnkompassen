@@ -1,7 +1,7 @@
 ---
 layout: layouts/base.njk
 section: author
-permalink: "authors/{{ name | slug }}/"
+permalink: "forfattare/{{ name | slug }}/"
 ---
 <h1>{{ name }}</h1>
 
@@ -16,6 +16,6 @@ permalink: "authors/{{ name | slug }}/"
 {% set postsList = collections.myAuthors[name] %}
 {% include "components/postsList.njk" %}
 
-{% set backUrl = "/authors/" %}
+{% set backUrl = "/forfattare/" %}
 {% set backTitle = "Authors" %}
 {% include "components/nav-back.njk" %}

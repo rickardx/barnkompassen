@@ -7,5 +7,7 @@ image: /assets/img/sample-location-0.jpg
 geolocation:
   latitude: 59.3293
   longitude: 18.0686
+layout: layouts/plats.njk
+permalink: /platser/{{ title | slug }}/
 ---
 Ut voluptate in commodo commodo sint dolore id sint duis sit Lorem.

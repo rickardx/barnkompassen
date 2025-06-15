@@ -1,27 +1,27 @@
 {
-  "name": "eleventy-sveltia-cms-starter",
-  "version": "0.0.2",
-  "description": "A template for building a fast Eleventy blog with Sveltia CMS, for deployment to Netlify",
+  "name": "barnkompassen",
+  "version": "1.0.0",
+  "description": "Barnkompassen - A website built with Eleventy and Sveltia CMS",
   "scripts": {
     "build": "npx @11ty/eleventy",
     "watch": "npx @11ty/eleventy --watch",
     "serve": "npx @11ty/eleventy --serve",
+    "dev": "npx @11ty/eleventy --serve",
     "debug": "DEBUG=* npx @11ty/eleventy"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/danurbanowicz/eleventy-sveltia-cms-starter"
+    "url": "https://github.com/rickardx/barnkompassen"
   },
   "author": {
-    "name": "Dan Urbanowicz",
-    "email": "dan.urbanowicz@gmail.com",
-    "url": "https://danurbanowicz.com"
+    "name": "Rickard Lindgren",
+    "url": "https://barnkompassen.se"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/danurbanowicz/eleventy-sveltia-cms-starter/issues"
+    "url": "https://github.com/rickardx/barnkompassen/issues"
   },
-  "homepage": "https://github.com/danurbanowicz/eleventy-sveltia-cms-starter",
+  "homepage": "https://barnkompassen.se",
   "devDependencies": {
     "@11ty/eleventy": "^3.1.1",
     "@11ty/eleventy-img": "^6.0.4",

@@ -53,19 +53,26 @@ module.exports = function(eleventyConfig) {
   // https://www.11ty.dev/docs/data-deep-merge/
   eleventyConfig.setDataDeepMerge(true);
 
-  // Blog posts collection (from Swedish folder blogg)
+  // Swedish collections - updated to point to content directory
   eleventyConfig.addCollection("blogg", collection => {
-    return collection.getFilteredByGlob("blogg/*.md");
+    return collection.getFilteredByGlob("content/blogg/*.md");
+  });
+
+  eleventyConfig.addCollection("platser", collection => {
+    return collection.getFilteredByGlob("content/platser/*.md");
   });
   
-  // Alias blog posts collection to match English name for backward compatibility
-  eleventyConfig.addCollection("blog", collection => {
-    return collection.getFilteredByGlob("blogg/*.md");
+  eleventyConfig.addCollection("sidor", collection => {
+    return collection.getFilteredByGlob("content/sidor/*.md");
+  });
+  
+  eleventyConfig.addCollection("forfattare", collection => {
+    return collection.getFilteredByGlob("content/forfattare/*.md");
   });
 
   // Add support for post authors
   eleventyConfig.addCollection("myAuthors", collection => {
-    const blogs = collection.getFilteredByGlob("blogg/*.md");
+    const blogs = collection.getFilteredByGlob("content/blogg/*.md");
     return blogs.reduce((coll, post) => {
       const author = post.data.author;
       if (!author) {
@@ -79,66 +86,6 @@ module.exports = function(eleventyConfig) {
     }, {});
   });
 
-  // Add locations collection (from Swedish folder platser)
-  eleventyConfig.addCollection("platser", collection => {
-    return collection.getFilteredByGlob("platser/*.md");
-  });
-  
-  // Alias locations collection to match English name for backward compatibility
-  eleventyConfig.addCollection("locations", collection => {
-    return collection.getFilteredByGlob("platser/*.md");
-  });
-  
-  // Add pages collection (from Swedish folder sidor)
-  eleventyConfig.addCollection("sidor", collection => {
-    return collection.getFilteredByGlob("sidor/*.md");
-  });
-  
-  // Alias pages collection to match English name for backward compatibility
-  eleventyConfig.addCollection("pages", collection => {
-    return collection.getFilteredByGlob("sidor/*.md");
-  });
-  
-  // Add authors collection (from Swedish folder forfattare)
-  eleventyConfig.addCollection("forfattare", collection => {
-    return collection.getFilteredByGlob("forfattare/*.md");
-  });
-  
-  // Alias authors collection to match English name for backward compatibility
-  eleventyConfig.addCollection("authors", collection => {
-    return collection.getFilteredByGlob("forfattare/*.md");
-  });
-
-  // Create redirects from English to Swedish URLs
-  eleventyConfig.addShortcode("createRedirect", function(from, to) {
-    return `
-      <!DOCTYPE html>
-      <html lang="sv">
-        <head>
-          <meta charset="utf-8">
-          <meta http-equiv="refresh" content="0;url=${to}">
-          <link rel="canonical" href="${to}">
-          <title>Redirecting to ${to}</title>
-        </head>
-        <body>
-          <p>Redirecting to <a href="${to}">${to}</a></p>
-        </body>
-      </html>
-    `;
-  });
-
-  // Setup redirects from English to Swedish paths
-  eleventyConfig.addPassthroughCopy({
-    "redirects/locations-redirect.html": "locations/index.html"
-  });
-  
-  // Add redirects for other sections
-  eleventyConfig.addPassthroughCopy({
-    "redirects/blog-redirect.html": "blog/index.html",
-    "redirects/pages-redirect.html": "pages/index.html",
-    "redirects/authors-redirect.html": "authors/index.html"
-  });
-
   // Date formatting (human readable)
   eleventyConfig.addFilter("readableDate", dateObj => {
     return DateTime.fromJSDate(dateObj).toFormat("LLL d yyyy");
@@ -149,12 +96,7 @@ module.exports = function(eleventyConfig) {
     return DateTime.fromJSDate(dateObj).toFormat("yyyy-MM-dd");
   });
 
-  // Faux-pluralize an English string (used in components/postsList.njk)
-  eleventyConfig.addFilter("pluralize", function (term, count = 1) {
-    return count === 1 ? term : `${term}s`;
-  });
-  
-  // Swedish pluralization (commonly just add 'er' or 'ar', though simplified here)
+  // Swedish pluralization (simplified)
   eleventyConfig.addFilter("swedishPluralize", function (term, count = 1) {
     if (count === 1) return term;
     // Very basic pluralization - would need to be more sophisticated for real Swedish
@@ -214,7 +156,7 @@ module.exports = function(eleventyConfig) {
     dataTemplateEngine: "njk",
     dir: {
       input: ".",
-      includes: "_includes",
+      includes: "templates",
       data: "_data",
       output: "_site"
     }

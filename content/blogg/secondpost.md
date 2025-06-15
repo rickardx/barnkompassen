@@ -8,6 +8,8 @@ image: https://images.unsplash.com/photo-1674574124345-02c525664b65?crop=entropy
 imageAltText: People waving flags at a demonstration
 tags:
   - sport
+layout: layouts/post.njk
+permalink: /blogg/{{ title | slug }}/
 ---
 Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.
 
