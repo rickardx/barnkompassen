@@ -29,7 +29,7 @@
     "clean-css": "^5.3.3",
     "html-minifier-terser": "^7.2.0",
     "js-yaml": "^4.1.0",
-    "luxon": "^3.6.1",
+    "luxon": "^3.7.1",
     "netlify-plugin-cache": "^1.0.3",
     "terser": "^5.35.0"
   }
